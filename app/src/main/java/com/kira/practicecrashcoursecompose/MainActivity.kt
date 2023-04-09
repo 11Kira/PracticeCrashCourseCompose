@@ -16,6 +16,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -60,22 +61,30 @@ class MainActivity : ComponentActivity() {
                            Text(text = "Add")
                        }
                    }
-                    LazyColumn {
-                        items(names) { currentName ->
-                            Text(
-                                text = currentName,
-                                modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp)
-                            )
-                            Divider()
-                        }
-                    }
+                    NameList(names = names)
                 }
             }
         }
     }
 }
 
+
+@Composable
+fun NameList(
+    names: List<String>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(modifier) {
+        items(names) { currentName ->
+            Text(
+                text = currentName,
+                modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            Divider()
+        }
+    }
+}
 
